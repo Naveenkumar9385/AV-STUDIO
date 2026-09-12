@@ -13,7 +13,15 @@ import contactRoutes from './routes/contact.js';
 import settingsRoutes from './routes/settings.js';
 import frameOrderRoutes from './routes/frameOrders.js';
 
-dotenv.config();
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load .env from server directory
+dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config(); // fallback to cwd
 
 const app = express();
 const PORT = process.env.PORT || 5000;
